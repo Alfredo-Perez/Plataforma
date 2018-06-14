@@ -1,0 +1,23 @@
+{
+  "Prueba": [
+    {
+      "userId": 1,
+      "id": 1,
+      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit 123",
+      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+      "status": false
+    },
+    {
+      "title": "Redaccion",
+      "body": "10 pts\n",
+      "status": false,
+      "id": 2
+    },
+    {
+      "title": "sadasd",
+      "body": "asdasd",
+      "status": true,
+      "id": 3
+    }
+  ]
+}
