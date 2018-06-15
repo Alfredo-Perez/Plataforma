@@ -3,6 +3,7 @@ import tinymce from 'tinymce';
 import 'tinymce/themes/modern';
 import 'tinymce/plugins/wordcount';
 import 'tinymce/plugins/table';
+import Comments from './comments'
 
 
 
@@ -67,6 +68,7 @@ class TinyEditorComponent extends Component {
         value={this.props.content}
         onChange={e => console.log(e)}
       />
+      <Comments list={this.state.comments} />
       </div>
     );
   }
