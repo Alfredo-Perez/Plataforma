@@ -35,7 +35,8 @@ tinymce.PluginManager.add('tma_annotate', function(editor, url) {
         // Create annotation
         editor.addButton('tma_annotate', {
             title: 'Crear comentario',//TMA.tooltips.annotation_create,
-            image: url + '/img/annotation.png',
+            image: '/img/annotation.png',
+            // image: `${process.env.PUBLIC_URL}/img/annotation.png`,
             onclick: function() {
                 annotation = '';
                 color = '#F0E465';
@@ -69,26 +70,27 @@ tinymce.PluginManager.add('tma_annotate', function(editor, url) {
                             name: 'annotation',
                             label: 'Mensaje', //TMA.settings.setting_annotation,
                             value: annotation
-                        } /*,{
+                        } ,{
                             type: 'colorpicker',
                             name: 'annotationbg',
                             label: 'Color',//TMA.settings.setting_background,
                             value: color
-                        }*/],
+                        }],
 
                         onsubmit: function(e) {
                             if (e.data.annotation) {
                                 var dataAnnotation = e.data.annotation;
+                                var color = e.data.annotationbg;
 
-                                if ($(node).attr("data-annotation")) {
+                                if (node.getAttribute("data-annotation")) {
                                     editor.dom.remove(node);
                                 }
 
                                 var id =1 + Math.floor(Math.random() * 10000);
 
-                                editor.selection.setContent('<span class="annotation" data-id="'+ id +'" data-author="' + /*TMA.author*/ 'Autor' + '" title="' + dataAnnotation.replace(/"/g,'&quot;') + '" style="background-color: yellow ">' + selectedText + '</span>');
-                                // console.log(editor);
-                                addComment(id, dataAnnotation);
+                                editor.selection.setContent('<span class="annotation" data-id="'+ id +'" data-author="' + /*TMA.author*/ 'Autor' + '" title="' + dataAnnotation.replace(/"/g,'&quot;') + '" style="background-color: '+color+' ">' + selectedText + '</span>');
+                               
+                                editor.addComment(id, dataAnnotation)
 
                             } else {
                                 editor.windowManager.alert(' Seleccione texto para comentar' /*TMA.errors.missing_annotation*/);
@@ -105,7 +107,7 @@ tinymce.PluginManager.add('tma_annotate', function(editor, url) {
         // Delete annotation
         editor.addButton('tma_annotatedelete', {
             title: 'Eliminar comentario' ,//TMA.tooltips.annotation_delete,
-            image: url + '/img/annotation-delete.png',
+            image: '/img/annotation-delete.png',
             onclick: function() {
                 var selectedText = editor.selection.getContent();
                 var selectedTextLength = selectedText.length;
@@ -116,12 +118,14 @@ tinymce.PluginManager.add('tma_annotate', function(editor, url) {
                     }
                     deletionNode = editor.selection.getNode();
                     replaceNode = deletionNode;
-                    $(deletionNode).attr("style", "");
-                    // console.log(deletionNode);
+                    
+                    deletionNode.setAttribute("style", "");
 
-                    removeComment($(deletionNode).data('id'));
+                    editor.removeComment(deletionNode.getAttribute("data-id"));
 
                     editor.dom.remove(replaceNode, deletionNode);
+
+
                 } else {
                     editor.windowManager.alert(' Seleccione texto para comentar' /*TMA.errors.missing_annotation*/);
                 }
@@ -131,7 +135,7 @@ tinymce.PluginManager.add('tma_annotate', function(editor, url) {
         // Hide all annotations
         editor.addButton('tma_annotatehide', {
             title: 'Ocultar comentarios',//TMA.tooltips.annotation_hide,
-            image: url + '/img/annotation-hide.png',
+            image: '/img/annotation-hide.png',
             cmd: 'tma_cmd_hide',
             onPostRender: tma_toggleHide
         });

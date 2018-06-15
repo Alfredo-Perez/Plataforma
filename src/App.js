@@ -24,13 +24,13 @@ class App extends Component {
             <h1 className="App-title">Welcome to React</h1>
           </header>
           <TinyEditorComponent
-            id="Example"
+            id="Editor"
           />
-          <PostForm />
-          <hr />
-          <Posts />
-        </div>
-</Provider>
+                <PostForm />
+                <hr />
+                <Posts />
+              </div>
+      </Provider>
     );
   }
 }
