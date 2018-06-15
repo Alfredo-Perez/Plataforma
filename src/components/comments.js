@@ -8,11 +8,11 @@ export default class Comments extends Component {
 
   render() {
 
-  	const listItems =  this.props.list.map((d) => <li>{d.text}</li>);
+  	const listItems =  this.props.list.map((d) => <li key={d.id}>{d.text}</li>);
 
 
     return (
-      <div class="commentSection">
+      <div>
       <h1>Comments</h1>
       <ul>
       {listItems}
