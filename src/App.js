@@ -15,7 +15,8 @@ class App extends Component {
   
   render() {
     return (
-      
+      <div id="page-wrapper" class="gray-bg">
+
       <Provider store={store}>
       
         <div className="App">
@@ -26,11 +27,18 @@ class App extends Component {
           <TinyEditorComponent
             id="Editor"
           />
-                <PostForm />
-                <hr />
-                <Posts />
-              </div>
+          <div class="col-lg-7">
+            <div class="ibox float-e-margins">
+
+              <PostForm />
+            </div>
+          </div>
+          <hr />
+          <Posts />
+        </div>
       </Provider>
+      </div>
+      
     );
   }
 }

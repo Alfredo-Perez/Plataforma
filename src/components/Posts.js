@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts, deletePost } from '../actions/postActions';
 import { DEL_POST } from '../actions/types';
+import '../App.css';
 
 
 class Posts extends Component {
@@ -20,16 +21,17 @@ class Posts extends Component {
 
     componentWillReceiveProps(nextProps){
         if (nextProps.newPost){
-            this.props.posts.unshift(nextProps.newPost);
+            this.props.posts.push(nextProps.newPost);
         }
 
     }
-
+/*
     deleteItem(id){
         console.log(id);
         //call action
         this.props.deletePost(id);
     }
+    */
     onDelete(post){
         //e.preventDefault();
 
@@ -43,25 +45,38 @@ class Posts extends Component {
 
         //call action
         this.props.deletePost(poste.id);
-        this.props.fetchPosts();
+        //this.props.fetchPosts();
+        this.componentWillMount();
+        console.log("No puede ser");
 
     }
     
     render() {
         const postItems = this.props.posts.map(post => (
-            <div key={post.id} >
-                <h3>{post.id} {post.title}</h3>
-                <p>{post.body} - <b>{ JSON.stringify(post.status)}</b></p>
-                
-                 
-                <button type="delete" onClick={this.onDelete.bind(this, post)} >Delete</button>
-                
+            
+        <div class="panel panel-default b-r-md">
+            <div class="panel-heading p-xs" key={post.id}>
+                {post.title}
             </div>
+            <div class="panel-body p-xs" key={post.id}>
+                <p>{post.body} - <b>{JSON.stringify(post.status)}</b></p>
+            </div>
+            <button type="delete" onClick={this.onDelete.bind(this, post)} >Delete</button>
+
+        </div>
         ));
         return (
         <div>
-            <h1>Rubrix</h1>
-            {postItems}
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Rubrix</h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        {postItems}    
+                    </div>
+                </div>       
+            </div>
         </div>
         )
     }
@@ -83,3 +98,13 @@ const mapSateToProps = state => ({
 
 export default connect (mapSateToProps, {fetchPosts, deletePost})(Posts);
 
+/*
+<div key={post.id} >
+                <h3>{post.id} {post.title}</h3>
+                <p>{post.body} - <b>{ JSON.stringify(post.status)}</b></p>
+                
+                 
+                <button type="delete" onClick={this.onDelete.bind(this, post)} >Delete</button>
+                
+            </div>
+            */

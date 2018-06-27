@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createPost } from '../actions/postActions';
+import '../App.css';
 
 class PostForm extends Component {
     constructor(props){
@@ -35,20 +36,32 @@ class PostForm extends Component {
     render() {
         return (
         <div>
-            <h3>Agregar rubrix</h3>
-            <form onSubmit={this.onSubmit}>
-                <div>
-                    <label>Puntos: </label><br />
-                    <input type="text" name="title" onChange={this.onChange} value={this.state.title}/>
+
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Agregar rubrix</h5>
+                    
                 </div>
-                <br />
-                <div>
-                    <label>Descripción: </label><br />
-                    <textarea name="body" onChange={this.onChange} value={this.state.body}/>
+                <div class="ibox-content">
+                        <div class="col-sm-6">
+                            
+                            <form onSubmit={this.onSubmit} role="form">
+                                <div >
+                                    <label>Puntos: </label><br />
+                                    <input type="text" name="title" onChange={this.onChange} value={this.state.title} class="form-control"/>
+                                </div>
+                                <div >
+                                    <label>Descripción: </label><br />
+                                    <textarea name="body" onChange={this.onChange} value={this.state.body} class="form-control"/>
+                                </div>
+                                <div>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
                 </div>
-                <br />
-                <button type="submit">Submit</button>
-            </form>
+            </div>
+
         </div>
         )
     }
@@ -58,3 +71,18 @@ PostForm.propTypes = {
 };
 
 export default connect(null, {createPost})(PostForm);
+
+/*<form onSubmit={this.onSubmit}>
+                    <div>
+                        <label>Puntos: </label><br />
+                        <input type="text" name="title" onChange={this.onChange} value={this.state.title}/>
+                    </div>
+                    <br />
+                    <div>
+                        <label>Descripción: </label><br />
+                        <textarea name="body" onChange={this.onChange} value={this.state.body}/>
+                    </div>
+                    <br />
+                    <button type="submit">Submit</button>
+                </form>
+*/
