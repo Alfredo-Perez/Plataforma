@@ -54,16 +54,17 @@ class Posts extends Component {
     render() {
         const postItems = this.props.posts.map(post => (
             
-        <div class="panel panel-default b-r-md">
-            <div class="panel-heading p-xs" key={post.id}>
-                {post.title}
-            </div>
-            <div class="panel-body p-xs" key={post.id}>
-                <p>{post.body} - <b>{JSON.stringify(post.status)}</b></p>
-            </div>
-            <button type="delete" onClick={this.onDelete.bind(this, post)} >Delete</button>
+        
+        
+        <tr key={post.id}>
+            <td>{post.id}</td>
+            <td>{post.title}</td>
+            <td>{post.body}</td>
+            <td>{JSON.stringify(post.status)}</td>
+            <td><button type="delete" onClick={this.onDelete.bind(this, post)} >Delete</button></td>
+        </tr>
+        
 
-        </div>
         ));
         return (
         <div>
@@ -72,11 +73,58 @@ class Posts extends Component {
                     <h5>Rubrix</h5>
                 </div>
                 <div class="ibox-content">
-                    <div class="row">
-                        {postItems}    
-                    </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Puntos</th>
+                            <th>Descripcion</th>
+                            <th>Status</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            {postItems}
+                                
+                        </tbody>
+                </table>
+
+
                 </div>       
             </div>
+
+            
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Border Table </h5>
+                            
+                                
+                        </div>
+                        <div class="ibox-content">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Username</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+            
         </div>
         )
     }
@@ -107,4 +155,19 @@ export default connect (mapSateToProps, {fetchPosts, deletePost})(Posts);
                 <button type="delete" onClick={this.onDelete.bind(this, post)} >Delete</button>
                 
             </div>
-            */
+            
+            <div class="row">
+                        {postItems}    
+            </div>
+
+            <div class="panel panel-default b-r-md">
+            <div class="panel-heading p-xs" key={post.id}>
+                {post.title}
+            </div>
+            <div class="panel-body p-xs" key={post.id}>
+                <p>{post.body} - <b>{JSON.stringify(post.status)}</b></p>
+            </div>
+            <button type="delete" onClick={this.onDelete.bind(this, post)} >Delete</button>
+
+            </div>
+*/
